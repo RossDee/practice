@@ -20,6 +20,8 @@ import pandas as pd
 from pandas import DataFrame
 import matplotlib.pyplot as plot
 import math
+
+#%%
 target_url = ("https://archive.ics.uci.edu/ml/machine-learning-databases/undocumented/connectionist-bench/sonar/sonar.all-data")
 rockVMines = pd.read_csv(target_url ,header=None,prefix="V") #prefix前缀
 #rockVMines = pd.read_csv('../rockdata.txt',header=None,prefix="V")  #prefix前缀
@@ -49,11 +51,7 @@ plot.show()
 '''
 实现方法2
 '''
-'''
-vector1 = [2,7,18,88,157,90,177,570]
 
-vector2 = [3,5,15,90,180,88,160,580]
-'''
 def pearson(vector1,vector2):
     n = len(vector1)
     ## simple sums
@@ -70,5 +68,7 @@ def pearson(vector1,vector2):
     if den ==0:
         return 0.0
     return num/den
-
-
+## run the code
+vector1 = [2,7,18,88,157,90,177,570]
+vector2 = [3,5,15,90,180,88,160,580]
+pearson(vector1,vector2)
