@@ -1,9 +1,12 @@
 """
 MNIST数据集是机器学习领域的一个经典数据集，下面这段代码相当于是深度学习的一个hello word。
 这个问题可以描述为：将手写数字的灰度图像(28像素 * 28像素)划分到10个类别中(0到9)
+"""
+
 import os
 import plaidml.keras
-"""
+
+#%%
 import matplotlib.pyplot as plt
 from keras import layers
 from keras import models
@@ -11,6 +14,7 @@ from keras.datasets import mnist
 from keras.utils import to_categorical
 import time
 
+#%%
 '''
 加载训练数据和测试数据
 train_images是图片，train_labels是图片的数字
