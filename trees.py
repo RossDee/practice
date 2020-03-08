@@ -79,3 +79,18 @@ def chooseBestFeatureToSplit(dataset):
             bestInfoGain = infoGain
             bestFeature = i
     return bestFeature
+
+'''
+def majorityCnt(classList)
+1. classCount:分类的出现的次数
+2. sortedClassCount vote in classList, 键值为classList 中的唯一值的数据字典
+3. sorted(iteritems(),key = itemgetter,从大到小排序）
+'''
+import operator
+def majorityCnt(classList):
+    classCount  = {}
+    for vote in classList:
+        if vote not in classCount.keys():classCount = 0
+        classCount[vote] +=1
+    sortedClassCount = sorted(classCount.iteritems(),key = operator.itemgetter(1),reversed = True)
+    return sortedClassCount[0][0]
