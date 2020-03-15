@@ -94,3 +94,38 @@ def majorityCnt(classList):
         classCount[vote] +=1
     sortedClassCount = sorted(classCount.iteritems(),key = operator.itemgetter(1),reversed = True)
     return sortedClassCount[0][0]
+
+'''
+创建树的函数代码
+createTree(dataSet,labels)
+classList ,包含数据集的所有类标签 [-1]最后一列
+第一个递归函数
+所有类标签相同，返回该类标签
+第二个递归函数条件
+用完所有特征，仍然不能把数据集互粉成包含唯一分类的分组
+使用majorityCnt 挑选出现次数的类别作为返回值
+
+然后开始创建树，myTree存储树的信息，用于后续绘制树图
+bestFeat:变量存储当前数据集选取的最好的特征
+
+遍历当前选择特征的所有属性值，然后划分上递归调用函数createTree，得到的返回值插入字典变量myTree
+
+'''
+
+#@todo
+def createTree(dataSet,labels):
+    classList = [example[-1] for example in dataSet]  #将dataSet的数据从最后一行开始导入到classList
+    if classList.count(classList[0]) == len(classList): # 如果所有的分类都只有一种
+        return classList[0]
+    if len(dataSet[0]) ==1:
+        return majorityCnt(classList)  #得到出现次数最多的分类名称
+    bestFeat = chooseBestFeatureToSplit(dataSet)
+    bestFeatLable = labels[bestFeat]
+    myTree = {bestFeatLable{}} # 存储的树分类信息，当前数据集选取的最好特征存储在变量bestFeat里面
+    del(labels[bestFeat])
+    featValues = [example[bestFeat] for example in dataSet] 
+    uniqueVals = set[featValues] # 不能分组的值
+    for value in uniqueVals:
+        subLabels = labels[:] # 复制类标签，存储在subLabels
+        myTree[bestFeatLable][value] = createTree(splitDataSet(dataSet,bestFeat,value),subLabels)
+    return myTree 
